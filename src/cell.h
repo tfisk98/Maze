@@ -4,7 +4,10 @@
 #include <iostream>
 
 
-struct Cell{char left; char bot ;} empty_cell ={' ',' '};
+struct Cell{char left; char bot ; bool visited;} empty_cell ={' ',' ', false}, full_cell={'|','_',false};
+
+//struct Path{std::tuple<std::size_t, std::size_t> act, std::tuple<std::size_t, std::size_t> next };
+
     /**
      *       \struct Cell
      *

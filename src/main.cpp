@@ -3,9 +3,9 @@
 
 int main(){
     
-    std::size_t nbrow = 4;
-    std::size_t nbcol = 4;
-    int wall_nb = 8;
+    std::size_t nbrow = 20;
+    std::size_t nbcol = 20;
+    int wall_nb =500;
     int walls_prct = 50;
     
     Maze M = Maze(nbrow, nbcol, wall_nb, walls_prct);
