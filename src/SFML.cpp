@@ -18,8 +18,10 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "Maze Viewer");
 
-    float cellWidth  = static_cast<float>(windowWidth) / nbcol;
-    float cellHeight = static_cast<float>(windowHeight) / nbrow;
+    const unsigned int M = max(nbcol, nbrow);
+
+    float cellWidth  = static_cast<float>(windowWidth) / max(nbcol,nbrow);
+    float cellHeight = static_cast<float>(windowHeight) / max(nbcol,nbrow);
 
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {
@@ -33,19 +35,19 @@ int main() {
 
         window.clear(sf::Color::White);
 
-        // 1️⃣ Draw Green Entrance (Top-Left)
+        // Draw Green Entrance (Top-Left)
         sf::RectangleShape startRect({cellWidth, cellHeight});
         startRect.setPosition({0.f, 0.f});
         startRect.setFillColor(sf::Color::Green);
         window.draw(startRect);
 
-        // 2️⃣ Draw Red Exit (Bottom-Right)
+        // Draw Red Exit (Bottom-Right)
         sf::RectangleShape endRect({cellWidth, cellHeight});
         endRect.setPosition({(nbcol - 1) * cellWidth, (nbrow - 1) * cellHeight});
         endRect.setFillColor(sf::Color::Red);
         window.draw(endRect);
 
-        // 3️⃣ Draw Walls
+        // Draw Walls
         sf::RectangleShape vWall({2.f, cellHeight}); // Vertical Wall
         vWall.setFillColor(sf::Color::Black);
         
