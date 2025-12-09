@@ -23,19 +23,9 @@
 # replacement variables:
 # doxygen -x_noenv [configFile]
 
-<<<<<<< HEAD
-int Maze::get_col(){
-	return nc;
-}
-
-int Maze::get_row(){
-	return nr;
-}
-=======
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
->>>>>>> 1db20c4a6c8731414c7d5e09c03b3c3b307f9cec
 
 # This tag specifies the encoding used for all characters in the configuration
 # file that follow. The default is UTF-8 which is also the encoding used for all
@@ -84,7 +74,7 @@ PROJECT_ICON           =
 # entered, it will be relative to the location where Doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       =
+OUTPUT_DIRECTORY       = doc
 
 # If the CREATE_SUBDIRS tag is set to YES then Doxygen will create up to 4096
 # sub-directories (in 2 levels) under the output directory of each output format

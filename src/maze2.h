@@ -47,9 +47,7 @@ public:
      * \brief Assign
      *
      *
-     *\param nr0 : number of cells per row in the visible maze,
-     * nc0: number of cells per column in the visible maze
-     * nbw : maximum  number of walls to build,
+     *\param nr0 : number of cells per row in the visible maze, nc0: number of cells per column in the visible maze, nbw : maximum  number of walls to build,
      * wp: likelihood to build a wall
      *\return  Maze object
     */

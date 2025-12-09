@@ -135,8 +135,10 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "Maze Viewer");
 
-    float cellWidth  = static_cast<float>(windowWidth) / nbcol;
-    float cellHeight = static_cast<float>(windowHeight) / nbrow;
+    const unsigned int M = max(nbcol, nbrow);
+
+    float cellWidth  = static_cast<float>(windowWidth) / max(nbcol,nbrow);
+    float cellHeight = static_cast<float>(windowHeight) / max(nbcol,nbrow);
 
     while (window.isOpen()) {
         while (const std::optional event = window.pollEvent()) {

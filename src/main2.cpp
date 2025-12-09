@@ -20,12 +20,6 @@ int main() {
     Cell& last = M(0,0);
     last.left = '|';
 
-    std::cout << "first left:" << first.left
-              << " first bot:" << first.bot << std::endl;
-
-    std::cout << "last left:" << last.left
-              << " last bot:" << last.bot << std::endl;
-
     M.generate();
     M.print();
 
