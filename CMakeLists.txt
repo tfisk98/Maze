@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 cmake_minimum_required(VERSION 3.15)
 
 project(MazeViewer VERSION 1.0 LANGUAGES CXX)
+=======
+cmake_minimum_required(VERSION 3.16)
+project(Catch2Examples LANGUAGES CXX)
+
+list(APPEND CMAKE_PREFIX_PATH "~/local/install_catch2")
+find_package(Catch2 3 REQUIRED)
+
+add_executable(test test/test.cpp)
+target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
+cmake_minimum_required(VERSION 4.1.2)
+project(MazeSolver)
+>>>>>>> 535c780 (Petites Modifs)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -63,6 +76,7 @@ catch_discover_tests(tests)
 =======
 add_library(maze src/main.cpp)
 
+<<<<<<< HEAD
 cmake_minimum_required(VERSION 3.16)
 project(Catch2Examples LANGUAGES CXX)
 
@@ -72,3 +86,5 @@ find_package(Catch2 3 REQUIRED)
 add_executable(test test.cpp)
 target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
 >>>>>>> 7f32e18 (Catch2)
+=======
+>>>>>>> 535c780 (Petites Modifs)

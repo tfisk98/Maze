@@ -1,5 +1,11 @@
 // test.cpp
+
+#define CATCH_CONFIG_MAIN
 #include <catch2/catch_test_macros.hpp>
+#include "maze.hpp"
+#include "cell.hpp"
+#include "monster.hpp"
+
 
 static int Factorial( int number ) {
    return number <= 1 ? number : Factorial( number - 1 ) * number;  // fail

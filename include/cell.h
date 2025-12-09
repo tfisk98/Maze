@@ -17,9 +17,10 @@ static Cell full_cell  = {'|', '_', false};
 
 =======
 
-struct Cell{char left; char bot ; bool visited;} empty_cell ={' ',' ', false}, full_cell={'|','_',false};
+struct Cell{char left; char bot ; bool visited; double size;} empty_cell ={' ',' ', false, 10.}, full_cell={'|','_',false,10.};
 
 //struct Path{std::tuple<std::size_t, std::size_t> act, std::tuple<std::size_t, std::size_t> next };
+
 
     /**
      *       \struct Cell
@@ -30,6 +31,8 @@ struct Cell{char left; char bot ; bool visited;} empty_cell ={' ',' ', false}, f
      *
      *          left is ' |' for a wall, ' ' else
      *          bot is '++' for a wall, ' ' otherwise
+     *              visited is True if cell is visited, False otherwise
+     *              size is a positive double corresponding to the number of pixels on a side
      *
      */
 
