@@ -23,6 +23,11 @@ public:
     void print();
 
 private:
+    struct Wall {
+        int r, c;
+        char type; // 'L' or 'B'
+    };
+
     bool in_bounds(int r, int c) const;
 
     std::size_t nr, nc;
