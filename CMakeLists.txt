@@ -63,8 +63,6 @@ catch_discover_tests(tests)
 =======
 add_library(maze src/main.cpp)
 
-
-// CMakeLists.txt
 cmake_minimum_required(VERSION 3.16)
 project(Catch2Examples LANGUAGES CXX)
 
