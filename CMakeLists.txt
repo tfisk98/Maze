@@ -19,3 +19,10 @@ add_executable(maze_sfml SFML.cpp maze.cpp)
 # 4. Link Libraries (-lsfml-graphics -lsfml-window -lsfml-system)
 # SFML::Graphics automatically handles the -I includes and -L library paths for you.
 target_link_libraries(maze_sfml PRIVATE SFML::Graphics SFML::Window SFML::System)
+cmake_minimum_required(VERSION 4.1.2)
+project(MazeSolver)
+
+set(CMAKE_CXX_STANDARD 17)
+
+include_directories(include)
+add_library(maze src/main.cpp)
