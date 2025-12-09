@@ -52,6 +52,25 @@ public:
      *\return  Maze object
     */
     
+    int Maze::get_col(); /** \fn int get_col();
+    			  * \brief Returns nb of columns 
+    			  *
+    			  *
+    			  * \param None 
+    			  * \return nc 
+    			  */							
+    								
+
+    int Maze::get_row(); /** \fn int get_row();
+    			  * \brief Returns nb of rows
+    			  *
+    			  *
+    			  *
+    			  * \param None
+    			  * \return nr
+    			  */
+
+    
     
     Cell
     operator()(const std::size_t& j,
