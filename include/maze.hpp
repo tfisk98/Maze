@@ -1,6 +1,17 @@
 #ifndef MAZE_H
 #define MAZE_H
 
+
+/**
+ * \file maze.hpp
+ * \brief Classe Maze 
+ * \author Thomas Burns & Thomas Fisk
+ * \version 0.1
+ * \date 23/12/2025
+ *
+ * Contient la classe maze qui est l'objet labyrinthe.
+ */
+
 #include "cell.h"
 
 #include <iostream>
@@ -8,6 +19,16 @@
 #include <tuple>
 #include <random>
 
+/**
+* \class Maze
+* \brief classe representant le labyrinthe
+*
+*  La classe gere la génération et l'affichage du labyrinthe. Le labyrinthe est vue comme une matrice (nr,nc) ou un vecteur(nr.nc) de
+*  cellules.
+*  Elle renvoie le nombre de ligne du labyrinthe
+*  Elle renvoie egalement le nombre de colonnes du labyrinthe
+*  Elle vérifie que l'on reste dans les bornes du maillage
+*/
 
 class Maze {
 public:

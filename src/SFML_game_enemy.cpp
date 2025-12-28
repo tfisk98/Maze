@@ -1,9 +1,23 @@
+/**
+ * \file SFMLgame.cpp
+ * \brief Jeu de resolution du labyrinthe avec un ennemie façon Pacman
+ * \author Thomas Burns & Thomas Fisk
+ * \version 0.1
+ * \date 23/12/2025
+ *
+ * Affiche le labyririnthe. L'utilisateur peut tenter de le resoudre en utilisant les flèches du clavier.
+ * Affiche la solution si l'utilisateur appuie sur la touche 'h'
+ * Quitte l'ecran si l'utilisateur appuie sur la touche 'esc' ou 'echap'
+ *
+ */
+
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <optional>
 #include <algorithm>
 #include "maze.hpp"
-#include "solver_TB.hpp"
+#include "solver.hpp"
 
 void display(const Maze& maze) {
     std::size_t nbrow = maze.rows();

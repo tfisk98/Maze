@@ -1,3 +1,17 @@
+/**
+ * \file maze.cpp
+ * \brief Methodes de la classe Maze (maze.hpp)
+ * \author Thomas Burns & Thomas Fisk
+ * \version 0.1
+ * \date 23/12/2025
+ *
+ * Corps des methodes introduites dans la classe maze.hpp notamment les fonctions generate, pour lla génération, et print,
+ * pour l'affichage terminal.
+ *
+ *
+ */
+
+
 #include "maze.hpp"
 #include <iostream>
 #include <vector>
