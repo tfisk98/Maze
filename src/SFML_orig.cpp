@@ -1,3 +1,18 @@
+/**
+ * \file SFMLorig.cpp
+ * \brief Propose un affichage graphique du labyrinthe à travers la bibliothèque Graphics du binding SFML
+ * \author Thomas Burns & Thomas Fisk
+ * \version 0.1
+ * \date 23/12/2025
+ *
+ * Affiche le labyrinthe
+ *
+ *
+ */
+
+
+
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <optional>

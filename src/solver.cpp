@@ -1,4 +1,16 @@
-#include "solver_TB.hpp"
+/**
+ * \file solver.cpp
+ * \brief Methodes de la classe Solver (solver.hpp)
+ * \author Thomas Burns & Thomas Fisk
+ * \version 0.1
+ * \date 23/12/2025
+ *
+ * Corps des methodes introduites dans la classe solver.hpp, comme les algorithmes Astar, Trémaux.
+ *
+ */
+
+
+#include "solver.hpp"
 #include <queue>
 #include <map>
 #include <set>
@@ -6,6 +18,15 @@
 #include <stack>
 #include <algorithm>
 #include <catch2/catch_test_macros.hpp>
+
+
+/**
+* \class Solver
+* \brief classe representant le solver, le résoluteur
+*
+*  La classe gere la résolution du labrinthe a travers l'algorithme AStar et/ou l'algorithme Trémaux.
+*
+*/
 
 Solver::Solver(const Maze& m) : maze(m), nr(m.rows()), nc(m.cols()) {}
 

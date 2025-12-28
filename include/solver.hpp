@@ -1,9 +1,29 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 
+/**
+ * \file solver.hpp
+ * \brief Classe Solver
+ * \author Thomas Burns & Thomas Fisk
+ * \version 0.1
+ * \date 23/12/2025
+ *
+ * Contient la classe solver qui gère la résolution du labyrinthe.
+ * 
+ */
+
 #include "maze.hpp"
 #include <vector>
 #include <utility>
+
+
+/**
+* \class Solver
+* \brief classe representant le solver, le résoluteur
+*
+*  La classe gere la résolution du labrinthe a travers l'algorithme AStar et/ou l'algorithme Trémaux.
+*
+*/
 
 class Solver {
 public:
