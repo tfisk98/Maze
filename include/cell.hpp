@@ -15,6 +15,12 @@
 
 #include <iostream>
 
+/**
+* \struct Cell
+* \brief structure représentant l'objet cellule
+*
+*  La structure définit les attributs d'une cellule utilisés pour construire le labyrinthe et le résoudre
+*/
 struct Cell {
     char left; 
     char bot; 

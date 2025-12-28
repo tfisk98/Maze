@@ -13,7 +13,7 @@
  */
 
 
-#include "maze.hpp"
+#include "../include/maze.hpp"
 #include <iostream>
 
 int main() {
