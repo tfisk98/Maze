@@ -36,7 +36,7 @@ const Cell& Maze::operator()(const std::size_t &j, const std::size_t &k) const {
 }
 
 // --- Helper ---
-bool Maze::in_bounds(int r, int c) const {
+bool Maze::inBounds(int r, int c) const {
     return r >= 0 && r < (int)nr && c >= 0 && c < (int)nc;
 }
 
@@ -56,7 +56,7 @@ void Maze::generate() {
     int r = 0, c = 0;
     
     stack.push_back({r, c});
-    data[r * nc + c].visited = true;
+    data[0].visited = true;
 
     // Directions: Up, Down, Left, Right
     int dr[] = {-1, 1, 0, 0};
@@ -100,43 +100,43 @@ void Maze::generate() {
 
     std::vector<Wall> candidateWalls;
 
-auto isDeadEnd = [this](int r, int c) {
-    int openSides = 0;
-    // Check Up
-    if (r > 0 && data[(r-1)*nc + c].bot == ' ') openSides++;
-    // Check Down
-    if (r < (int)nr-1 && data[r*nc + c].bot == ' ') openSides++;
-    // Check Left
-    if (c > 0 && data[r*nc + c].left == ' ') openSides++;
-    // Check Right
-    if (c < (int)nc-1 && data[r*nc + c + 1].left == ' ') openSides++;
-    return openSides == 1; // only one exit → dead end
-};
+    auto isDeadEnd = [this](int r, int c) {
+        int openSides = 0;
+        // Check Up
+        if (r > 0 && data[(r-1)*nc + c].bot == ' ') openSides++;
+        // Check Down
+        if (r < (int)nr-1 && data[r*nc + c].bot == ' ') openSides++;
+        // Check Left
+        if (c > 0 && data[r*nc + c].left == ' ') openSides++;
+        // Check Right
+        if (c < (int)nc-1 && data[r*nc + c + 1].left == ' ') openSides++;
+        return openSides == 1; // only one exit → dead end
+    };
 
-// Collect removable walls adjacent to dead ends
-for (int r = 0; r < (int)nr; ++r) {
-    for (int c = 0; c < (int)nc; ++c) {
-        if (!isDeadEnd(r,c)) continue;
+    // Collect removable walls adjacent to dead ends
+    for (int r = 0; r < (int)nr; ++r) {
+        for (int c = 0; c < (int)nc; ++c) {
+            if (!isDeadEnd(r,c)) continue;
 
-        // Left wall
-        if (c > 0 && data[r*nc + c].left == '|')
-            candidateWalls.push_back({r, c, 'L'});
-        // Bottom wall
-        if (r < (int)nr-1 && data[r*nc + c].bot == '_')
-            candidateWalls.push_back({r, c, 'B'});
+            // Left wall
+            if (c > 0 && data[r*nc + c].left == '|')
+                candidateWalls.push_back({r, c, 'L'});
+            // Bottom wall
+            if (r < (int)nr-1 && data[r*nc + c].bot == '_')
+                candidateWalls.push_back({r, c, 'B'});
+        }
     }
-}
 
-// Shuffle candidates
-std::shuffle(candidateWalls.begin(), candidateWalls.end(), gen);
+    // Shuffle candidates
+    std::shuffle(candidateWalls.begin(), candidateWalls.end(), gen);
 
-// Remove up to 20% of candidate walls
-int removeCount = candidateWalls.size() * 0.20f;
-for (int i = 0; i < removeCount; ++i) {
-    auto &w = candidateWalls[i];
-    if (w.type == 'L') data[w.r*nc + w.c].left = ' ';
-    else data[w.r*nc + w.c].bot = ' ';
-}
+    // Remove up to 20% of candidate walls
+    int removeCount = candidateWalls.size() * 0.20f;
+    for (int i = 0; i < removeCount; ++i) {
+        auto &w = candidateWalls[i];
+        if (w.type == 'L') data[w.r*nc + w.c].left = ' ';
+        else data[w.r*nc + w.c].bot = ' ';
+    }
 
 
     // Open Entrance (Top-Left) and Exit (Bottom-Right)

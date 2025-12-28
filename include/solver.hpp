@@ -30,9 +30,28 @@ public:
     Solver(const Maze& m);
 
     // A* shortest path
+    /**
+     * \fn std::vector<std::pair<int,int>>  solveAStar();
+     * \brief Calcul du plus court chemin du labyrinthe avec l'algorithme AStar.
+     *
+     *  L'algorithme AStar est un algorithme de tyoe backtracking permettant une résolution exhaustive du problème
+     *  de trouver le plus court chemin dans un labyrinthe.
+     *
+     * \param aucun
+     * \return Vecteur de coordonnées des cellules parcourus par le plus court chemin chemin.
+     */
     std::vector<std::pair<int,int>> solveAStar();
 
     // Tremaux algorithm (DFS with marking visited paths)
+    /**
+     * \fn std::vector<std::pair<int,int>>  solveAStar();
+     * \brief Calcul du plus court chemin du labyrinthe avec l'algorithme Tremaux.
+     *
+     *
+     *
+     * \param aucun
+     * \return Vecteur de coordonnées des cellules parcourus par le plus court chemin chemin.
+     */
     std::vector<std::pair<int,int>> solveTremaux();
 
 private:
@@ -40,18 +59,38 @@ private:
     int nr, nc;
 
     // Helper to check if move is valid (no wall)
+    /**
+     * \fn bool canMove(int r1, int c1, int r2, int c2) ;
+     * \brief Verifie qu'aller du point de coordonner(r1,c1) au point (r2,c2) est possible.
+     *
+     * Regarde si (r2,c2) est toujours dans les limites du labyrinthes.
+     * Si oui, vérifie qu'un mur ne se trouve pas entre (r1,c1) et (r2,c2).
+     * Renvois False si c'est le cas, True sinon
+     *
+     * \param la ligne r1 et la colonne c1 du point de coordonnée actuel et la ligne r2 et la colonne c2 du point vers lequel on veut aller.
+     * \return True(1) si c'est possible, False(0) sinon.
+     */
     bool canMove(int r1, int c1, int r2, int c2) const;
 
     // Manhattan heuristic for A*
-    int heuristic(int r, int c) const;
+    /**
+     * \fn int manhattan(int r, int c);
+     * \brief Calcul du plus court chemin du labyrinthe avec l'algorithme AStar.
+     *
+     *  Calcule la distance d'un point (r,c) au point de sortie du labyrinthe.
+     *
+     * \param aucun
+     * \return Vecteur de coordonnées des cellules parcourus par le plus court chemin chemin.
+     */
+    int manhattan(int r, int c) const;
 
     #ifdef UNIT_TEST
 	public:
 
-        // Ici on rends la fonction heuristic public pour pouvoir le tester
+    // Ici on rends la fonction heuristic public pour pouvoir la tester
 
-	int heuristic_public(int r, int c) const {
-        return heuristic(r, c);
+	int manhattanPublic(int r, int c) const {
+        return manhattan(r, c);
     }
     #endif
 	
