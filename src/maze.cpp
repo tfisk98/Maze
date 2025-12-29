@@ -71,7 +71,7 @@ void Maze::generate() {
             int nr2 = cr + dr[i];
             int nc2 = cc + dc[i];
 
-            if (in_bounds(nr2, nc2) && !data[nr2 * nc + nc2].visited) {
+            if (inBounds(nr2, nc2) && !data[nr2 * nc + nc2].visited) {
                 neighbors.push_back(i);
             }
         }

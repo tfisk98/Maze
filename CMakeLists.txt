@@ -7,12 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)
+# Tell CMake where SMFL is installed
+set(CMAKE_PREFIX_PATH "/Users/thomasfisk/Documents/Programmation/C++/Cpp/SFML" ${SFML_PREFIX_PATH})
+find_package(SFML 3 COMPONENTS Graphics Window System Audio REQUIRED)
 
 # --- Executable 1: maze_sfml ---
 add_executable(maze_sfml
-    src/SFML.cpp
-    src/maze.cpp
+    src/SFML_orig.cpp	
+    src/maze.cpp	
     src/solver.cpp
 )
 
@@ -24,9 +26,9 @@ target_link_libraries(maze_sfml PRIVATE
 
 # --- Executable 2: maze_game ---
 add_executable(maze_game
-	src/SFML_game.cpp
-	src/maze.cpp
-	src/solver.cpp
+        src/SFML_game.cpp	
+        src/maze.cpp	
+        src/solver.cpp
 )
 
 target_link_libraries(maze_game PRIVATE
