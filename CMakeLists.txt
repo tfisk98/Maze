@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-# Tell CMake where SMFL is installed
-set(CMAKE_PREFIX_PATH "/Users/thomasfisk/Documents/Programmation/C++/Cpp/SFML" ${SFML_PREFIX_PATH})
 find_package(SFML 3 COMPONENTS Graphics Window System Audio REQUIRED)
 
 # --- Executable 1: maze_sfml ---
@@ -50,8 +48,8 @@ find_package(Catch2 3 REQUIRED)
 add_executable(tests
     tests/test_solver.cpp
     tests/test_maze.cpp
-    src/solver.cpp
     src/maze.cpp
+    src/solver.cpp
 )
 
 target_compile_definitions(tests PRIVATE UNIT_TEST)
@@ -59,6 +57,7 @@ target_compile_definitions(tests PRIVATE UNIT_TEST)
 target_link_libraries(tests PRIVATE
     Catch2::Catch2WithMain
 )
+
 
 include(Catch)
 catch_discover_tests(tests)
