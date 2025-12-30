@@ -20,8 +20,10 @@
 #include <iostream>
 #include <optional>
 #include <algorithm>
+#include <vector>
 #include "maze.hpp"
 #include "solver.hpp"
+
 
 void display(const Maze& maze) {
     std::size_t nbrow = maze.rows();
@@ -31,87 +33,80 @@ void display(const Maze& maze) {
     const unsigned int windowHeight = 800;
 
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "Maze Game");
-    
-    // Load a music to play
-    //sf::Music music("nice_music.ogg");
- 
-    // Play the music
-    //music.play();
 
     const float marge = 40.0f;
-    int max = nbrow > nbcol ? nbrow : nbcol;
-    float cellWidth = (windowWidth - 2.0f*marge) / max;
-    float cellHeight = (windowHeight - 2.0f*marge) / max;
-    float wallEpaisseur = std::min(3.0f, std::min(cellWidth, cellHeight) * 0.15f);
+    float availableWidth = windowWidth - 2.0f * marge;
+    float availableHeight = windowHeight - 2.0f * marge;
+
+    float maxDim = static_cast<float>(std::max(nbrow, nbcol));
+    float cellWidth = availableWidth / maxDim;
+    float cellHeight = availableHeight / maxDim;
+    float wallEpaisseur = std::max(1.0f, std::min(3.0f, cellWidth * 0.1f));
 
     std::size_t playerR = 0;
     std::size_t playerC = 0;
 
-    // --- Solution path ---
+    // --- Trail tracking ---
+    // Store pairs of (row, col) that the player has visited
+    std::vector<std::pair<std::size_t, std::size_t>> playerTrail;
+    playerTrail.push_back({playerR, playerC}); // Add starting position
+
     bool showSolution = false;
     std::vector<std::pair<int,int>> solutionPath;
     Solver solver(maze);
 
     while (window.isOpen()) {
-        // --- Event polling (SFML 3 Fixed) ---
         while (const std::optional event = window.pollEvent()) {
-            
-            // 1. Handle Window Close
             if (event->is<sf::Event::Closed>()) {
                 window.close();
             }
 
-            // 2. Handle Key Presses
-            // Use getIf to safely retrieve the key event data
             if (const auto* keyEvent = event->getIf<sf::Event::KeyPressed>()) {
-                
-                // SFML 3: Keys are in sf::Keyboard::Key enum
                 sf::Keyboard::Key code = keyEvent->code;
+                
+                // Store current position to check if we moved
+                std::size_t oldR = playerR;
+                std::size_t oldC = playerC;
 
-                // --- Global Keys ---
                 if (code == sf::Keyboard::Key::Escape) {
                     window.close();
                 }
                 else if (code == sf::Keyboard::Key::H) {
                     showSolution = !showSolution;
-                    //if (showSolution) {
                     solutionPath = solver.solveAStar();
-                    //}
                 }
-
-                // --- Player Movement ---
+                // Movement logic
                 else if (code == sf::Keyboard::Key::Up && playerR > 0) {
-                    if (maze(playerR - 1, playerC).bot == ' ') 
-                        playerR--;
+                    if (maze(playerR - 1, playerC).bot == ' ') playerR--;
                 }
                 else if (code == sf::Keyboard::Key::Down && playerR < nbrow - 1) {
-                    if (maze(playerR, playerC).bot == ' ') 
-                        playerR++;
+                    if (maze(playerR, playerC).bot == ' ') playerR++;
                 }
                 else if (code == sf::Keyboard::Key::Left && playerC > 0) {
-                    if (maze(playerR, playerC).left == ' ') 
-                        playerC--;
+                    if (maze(playerR, playerC).left == ' ') playerC--;
                 }
                 else if (code == sf::Keyboard::Key::Right && playerC < nbcol - 1) {
-                    if (maze(playerR, playerC + 1).left == ' ') 
-                        playerC++;
+                    if (maze(playerR, playerC + 1).left == ' ') playerC++;
+                }
+
+                // If position changed, add to trail
+                if (playerR != oldR || playerC != oldC) {
+                    playerTrail.push_back({playerR, playerC});
                 }
             }
         }
 
         window.clear(sf::Color::White);
 
-        // --- Draw frame ---
-        const float rectWidth = cellWidth*(nbcol + 1) ;
-        const float rectHeight = cellHeight*(nbrow + 1) ;
-        sf::RectangleShape cadre({(rectWidth - 2*marge) + 4*wallEpaisseur, (rectHeight - 2*marge) + 4*wallEpaisseur});
-        cadre.setPosition({marge - wallEpaisseur / 2, marge - wallEpaisseur / 2});
+        // 1. Draw frame
+        sf::RectangleShape cadre({cellWidth * nbcol, cellHeight * nbrow});
+        cadre.setPosition({marge, marge});
         cadre.setFillColor(sf::Color::White);
         cadre.setOutlineThickness(2.0f);
         cadre.setOutlineColor(sf::Color::Black);
         window.draw(cadre);
 
-        // --- Draw entrance & exit ---
+        // 2. Draw entrance/exit
         sf::RectangleShape startRect({cellWidth, cellHeight});
         startRect.setPosition({marge, marge});
         startRect.setFillColor(sf::Color(200, 255, 200));
@@ -122,7 +117,20 @@ void display(const Maze& maze) {
         endRect.setFillColor(sf::Color(255, 200, 200));
         window.draw(endRect);
 
-        // --- Draw maze walls ---
+        // --- 3. Draw Player Trail ---
+        // We draw this before the walls and player so it stays in the background
+        sf::CircleShape trailDot(std::min(cellWidth, cellHeight) * 0.15f);
+        trailDot.setFillColor(sf::Color(100, 100, 255, 100)); // Transparent blue
+        trailDot.setOrigin({trailDot.getRadius(), trailDot.getRadius()});
+
+        for (const auto& pos : playerTrail) {
+            float x = marge + pos.second * cellWidth + cellWidth / 2.0f;
+            float y = marge + pos.first * cellHeight + cellHeight / 2.0f;
+            trailDot.setPosition({x, y});
+            window.draw(trailDot);
+        }
+
+        // 4. Draw maze walls (same logic as previous fix)
         sf::RectangleShape vWall({wallEpaisseur, cellHeight});
         vWall.setFillColor(sf::Color::Black);
         sf::RectangleShape hWall({cellWidth, wallEpaisseur});
@@ -133,33 +141,18 @@ void display(const Maze& maze) {
                 float x = marge + c * cellWidth;
                 float y = marge + r * cellHeight;
                 const Cell &cell = maze(r, c);
-
-                // LEFT WALL
-                if (cell.left == '|') {
-                    if (!(r == 0 && c == 0)) {
-                        vWall.setPosition({x, y});
-                        window.draw(vWall);
-                    }
-                } else if (c == 0 && !(r == 0 && c == 0)) {
-                     vWall.setPosition({x, y});
-                     window.draw(vWall);
+                if (cell.left == '|' || (c == 0 && !(r == 0 && c == 0))) {
+                    vWall.setPosition({x, y});
+                    window.draw(vWall);
                 }
-
-                // TOP WALL
                 if (r == 0) {
                      hWall.setPosition({x, y});
                      window.draw(hWall);
                 }
-
-                // BOTTOM WALL
-                if (cell.bot == '_') {
-                    if (!(r == nbrow - 1 && c == nbcol - 1)) {
-                        hWall.setPosition({x, y + cellHeight - wallEpaisseur});
-                        window.draw(hWall);
-                    }
+                if (cell.bot == '_' || (r == nbrow - 1 && !(r == nbrow - 1 && c == nbcol - 1))) {
+                    hWall.setPosition({x, y + cellHeight - wallEpaisseur});
+                    window.draw(hWall);
                 }
-
-                // RIGHT WALL
                 if (c == nbcol - 1) {
                     vWall.setPosition({x + cellWidth - wallEpaisseur, y});
                     window.draw(vWall);
@@ -167,22 +160,21 @@ void display(const Maze& maze) {
             }
         }
 
-        // --- Draw solution path ---
+        // 5. Draw solution path (Magenta dots)
         if (showSolution) {
-            sf::RectangleShape solRect({cellWidth*0.5f, cellHeight*0.5f});
-            solRect.setFillColor(sf::Color(255, 0, 255, 150));
-            solRect.setOrigin({cellWidth*0.25f, cellHeight*0.25f});
-
+            sf::CircleShape solDot(std::min(cellWidth, cellHeight) * 0.1f);
+            solDot.setFillColor(sf::Color(255, 0, 255, 200));
+            solDot.setOrigin({solDot.getRadius(), solDot.getRadius()});
             for (auto [r, c] : solutionPath) {
                 float x = marge + c * cellWidth + cellWidth / 2.0f;
                 float y = marge + r * cellHeight + cellHeight / 2.0f;
-                solRect.setPosition({x, y});
-                window.draw(solRect);
+                solDot.setPosition({x, y});
+                window.draw(solDot);
             }
         }
 
-        // --- Draw player ---
-        float radius = std::min(cellWidth, cellHeight) * 0.375f;
+        // 6. Draw player
+        float radius = std::min(cellWidth, cellHeight) * 0.35f;
         sf::CircleShape player(radius);
         player.setOrigin({radius, radius});
         player.setPosition({marge + playerC * cellWidth + cellWidth / 2.0f,
@@ -193,7 +185,6 @@ void display(const Maze& maze) {
         window.display();
     }
 }
-
 
 int main() {
     std::size_t nbrow, nbcol;
