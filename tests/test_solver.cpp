@@ -2,7 +2,7 @@
 #include<catch2/catch_test_macros.hpp>
 #include "solver.hpp"
 #include "maze.hpp"
-#include<vector>
+#include <vector>
 
 TEST_CASE ("fonction heuristique (manhattan) fonctionne ", "[manhattan]") {
 
@@ -12,10 +12,23 @@ TEST_CASE ("fonction heuristique (manhattan) fonctionne ", "[manhattan]") {
 	REQUIRE(s.manhattanPublic(1,1) == 6);
 }
 
-TEST_CASE ("fonction compte les"){
-    int a = 2;
-    REQUIRE(a==2);
+
+TEST_CASE ("fonction canMove fonctionne ", "[canMove]") {
+
+    Maze m(5,5);
+    Solver s(m);
+
+    REQUIRE(s.canMovePublic(0,1,-1,1) == false);
+    
+    REQUIRE(s.canMovePublic(1,4,1,5) == true);
+    
+    m(2,3).left = '|';
+    REQUIRE(s.canMovePublic(2,3,2,2) == false);
+    
+    //m(1,2).bot = '_';
+    REQUIRE(s.canMovePublic(1,2,2,2)== false);
 }
+
 
 /*
 TEST_CASE ("algorithme A* fonctionne", "[algorithme A*]"){

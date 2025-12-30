@@ -49,6 +49,7 @@ find_package(Catch2 3 REQUIRED)
 
 add_executable(tests
     tests/test_solver.cpp
+    tests/test_maze.cpp
     src/solver.cpp
     src/maze.cpp
 )

@@ -92,6 +92,10 @@ private:
 	int manhattanPublic(int r, int c) const {
         return manhattan(r, c);
     }
+    
+    bool canMovePublic(int r1, int c1, int r2, int c2) const{
+        return canMove(r1,c1,r2,c2);
+    }
     #endif
 	
 };
