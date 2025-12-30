@@ -6,7 +6,7 @@
  * \date 23/12/2025
  *
  * Affiche le labyririnthe. L'utilisateur peut tenter de le resoudre en utilisant les flèches du clavier.
- * Affiche la solution si l'utilisateur appuie sur la touche 'h'
+ * Affiche la solution lorsque l'utilisateur appuie sur la touche 'h'
  * Quitte l'ecran si l'utilisateur appuie sur la touche 'esc' ou 'echap'
  *
  */
@@ -16,6 +16,7 @@
 
 
 #include <SFML/Graphics.hpp>
+//#include <SFML/Audio.hpp>
 #include <iostream>
 #include <optional>
 #include <algorithm>
@@ -28,14 +29,19 @@ void display(const Maze& maze) {
 
     const unsigned int windowWidth = 800;
     const unsigned int windowHeight = 800;
-    //float cellWidth = 1.0f;
-    //float cellHeight = 1.0f;
 
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "Maze Game");
+    
+    // Load a music to play
+    //sf::Music music("nice_music.ogg");
+ 
+    // Play the music
+    //music.play();
 
     const float marge = 40.0f;
-    float cellWidth = (windowWidth - 2.0f * marge) / nbcol;
-    float cellHeight = (windowHeight - 2.0f * marge) / nbrow;
+    int max = nbrow > nbcol ? nbrow : nbcol;
+    float cellWidth = (windowWidth - 2.0f*marge) / max;
+    float cellHeight = (windowHeight - 2.0f*marge) / max;
     float wallEpaisseur = std::min(3.0f, std::min(cellWidth, cellHeight) * 0.15f);
 
     std::size_t playerR = 0;
@@ -96,7 +102,9 @@ void display(const Maze& maze) {
         window.clear(sf::Color::White);
 
         // --- Draw frame ---
-        sf::RectangleShape cadre({(windowWidth - 2 * marge) + wallEpaisseur, (windowHeight - 2 * marge) + wallEpaisseur});
+        const float rectWidth = cellWidth*(nbcol + 1) ;
+        const float rectHeight = cellHeight*(nbrow + 1) ;
+        sf::RectangleShape cadre({(rectWidth - 2*marge) + 4*wallEpaisseur, (rectHeight - 2*marge) + 4*wallEpaisseur});
         cadre.setPosition({marge - wallEpaisseur / 2, marge - wallEpaisseur / 2});
         cadre.setFillColor(sf::Color::White);
         cadre.setOutlineThickness(2.0f);

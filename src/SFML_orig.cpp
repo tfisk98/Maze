@@ -36,8 +36,11 @@ int main() {
     sf::RenderWindow window(sf::VideoMode({windowWidth, windowHeight}), "Maze Viewer");
 
     const float marge = 40.0f;
-    float cellWidth = (windowWidth - 2.0f*marge) / nbcol;
-    float cellHeight = (windowHeight - 2.0f*marge) / nbrow;
+    int max = nbrow > nbcol ? nbrow : nbcol;
+    float cellWidth = (windowWidth - 2.0f*marge) / max;
+    float cellHeight = (windowHeight - 2.0f*marge) / max;
+    
+    
     
     float wallEpaisseur = std::min(3.0f, std::min(cellWidth, cellHeight) * 0.15f);
 
@@ -52,8 +55,10 @@ int main() {
         }
 
         window.clear(sf::Color::White);
-
-	sf::RectangleShape cadre({(windowWidth - 2 * marge) + wallEpaisseur, (windowHeight - 2*marge) + wallEpaisseur});
+    
+    const float rectWidth = cellWidth*(nbcol + 1) ;
+    const float rectHeight = cellHeight*(nbrow + 1) ;
+	sf::RectangleShape cadre({(rectWidth - 2*marge) + 4*wallEpaisseur, (rectHeight - 2*marge) + 4*wallEpaisseur});
 	cadre.setPosition({marge - wallEpaisseur / 2, marge - wallEpaisseur / 2});
 	cadre.setFillColor(sf::Color::White);
 	cadre.setOutlineThickness(2.0f);

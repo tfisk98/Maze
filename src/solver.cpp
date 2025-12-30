@@ -17,7 +17,7 @@
 #include <cmath>
 #include <stack>
 #include <algorithm>
-#include <catch2/catch_test_macros.hpp>
+//#include <catch2/catch_test_macros.hpp>
 
 
 Solver::Solver(const Maze& m) : maze(m), nr(m.rows()), nc(m.cols()) {}
@@ -38,6 +38,7 @@ bool Solver::canMove(int r1, int c1, int r2, int c2) const {
     return false; // diagonal not allowed
 }
 
+/*
 bool Solver::canMove(Maze& m,int r1, int c1, int r2, int c2) const {
     if !m.inBounds(r2,c2) return false;
     if (r2 == r1) { // horizontal move
@@ -48,7 +49,7 @@ bool Solver::canMove(Maze& m,int r1, int c1, int r2, int c2) const {
         else         return maze(r2,c1).bot != '_';   // up
     }
     return false; // diagonal not allowed
-}
+}*/
 
 // ---------------------------
 // Manhattan heuristic
@@ -108,6 +109,7 @@ std::vector<std::pair<int,int>> Solver::solveAStar() {
 // ---------------------------
 // Trémaux's algorithm
 // ---------------------------
+
 std::vector<std::pair<int,int>> Solver::solveTremaux() {
     using CellCoord = std::pair<int,int>;
     std::vector<CellCoord> path;
