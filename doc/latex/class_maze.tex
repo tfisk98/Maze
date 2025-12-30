@@ -1,0 +1,158 @@
+\doxysection{Maze Class Reference}
+\hypertarget{class_maze}{}\label{class_maze}\index{Maze@{Maze}}
+
+
+classe representant le labyrinthe  
+
+
+
+
+{\ttfamily \#include $<$maze.\+hpp$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_maze_1_1_wall}{Wall}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_maze_aad03ade4541510e080625f55266f720c}{Maze}} (std\+::size\+\_\+t nr0=0, std\+::size\+\_\+t nc0=0)
+\begin{DoxyCompactList}\small\item\em Construit un objet Labyrinthe de taille nr\texorpdfstring{$\ast$}{*}nc. \end{DoxyCompactList}\item 
+\Hypertarget{class_maze_a5be4ba557c734db8d0dccd25880cac4a}\label{class_maze_a5be4ba557c734db8d0dccd25880cac4a} 
+\mbox{\hyperlink{struct_cell}{Cell}} \& {\bfseries operator()} (const std\+::size\+\_\+t \&j, const std\+::size\+\_\+t \&k)
+\item 
+\Hypertarget{class_maze_a59dc24e1024d716937b9c2989abb9c42}\label{class_maze_a59dc24e1024d716937b9c2989abb9c42} 
+const \mbox{\hyperlink{struct_cell}{Cell}} \& {\bfseries operator()} (const std\+::size\+\_\+t \&j, const std\+::size\+\_\+t \&k) const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{class_maze_ad2453334e1a8cf26e76907269ad7c07d}{rows}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie le nombre de ligne du labyrinthe. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{class_maze_aa5623e0a308956de6489e0818ccd3ed7}{cols}} () const
+\begin{DoxyCompactList}\small\item\em Renvoie le nombre de ligne du labyrinthe. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_maze_a8c1641f0761457416e343e3ea70c567b}{generate}} ()
+\begin{DoxyCompactList}\small\item\em génère le labyrinthe \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_maze_a6eb47c884e545475598f784707088f8b}{print}} ()
+\begin{DoxyCompactList}\small\item\em affiche le labyrinthe dans le terminal \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_maze_ad747a622d6196d16a63d376ad95cff34}{in\+Bounds}} (int r, int c) const
+\begin{DoxyCompactList}\small\item\em Regarde si (r,c) est toujours dans les limites du labyrinthes. Renvois True si c\textquotesingle{}est le cas, False sinon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_maze_ac314b4837aaa7005b8a4fe047cedce2a}\label{class_maze_ac314b4837aaa7005b8a4fe047cedce2a} 
+std\+::size\+\_\+t {\bfseries nr}
+\item 
+\Hypertarget{class_maze_a3cca6eb89bc2f04019b3bcd09137313c}\label{class_maze_a3cca6eb89bc2f04019b3bcd09137313c} 
+std\+::size\+\_\+t {\bfseries nc}
+\item 
+\Hypertarget{class_maze_a4069a093f5f4e780a3b1b03025966fe0}\label{class_maze_a4069a093f5f4e780a3b1b03025966fe0} 
+std\+::vector$<$ \mbox{\hyperlink{struct_cell}{Cell}} $>$ {\bfseries data}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+classe representant le labyrinthe 
+
+La classe gere la génération et l\textquotesingle{}affichage du labyrinthe. Le labyrinthe est vue comme une matrice (nr,nc) ou un vecteur(nr.\+nc) de cellules. Elle renvoie le nombre de ligne du labyrinthe Elle renvoie egalement le nombre de colonnes du labyrinthe Elle vérifie que l\textquotesingle{}on reste dans les bornes du maillage 
+
+\label{doc-constructors}
+\Hypertarget{class_maze_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_maze_aad03ade4541510e080625f55266f720c}\index{Maze@{Maze}!Maze@{Maze}}
+\index{Maze@{Maze}!Maze@{Maze}}
+\doxysubsubsection{\texorpdfstring{Maze()}{Maze()}}
+{\footnotesize\ttfamily \label{class_maze_aad03ade4541510e080625f55266f720c} 
+Maze\+::\+Maze (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{nr0}{ = {\ttfamily 0}, }\item[{std\+::size\+\_\+t}]{nc0}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Construit un objet Labyrinthe de taille nr\texorpdfstring{$\ast$}{*}nc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & nombre de ligne nr0 et le nombre de colonne nc0 du labyrinthe. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+l\textquotesingle{}objet labyrinthe. 
+\end{DoxyReturn}
+
+
+\label{doc-func-members}
+\Hypertarget{class_maze_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_maze_aa5623e0a308956de6489e0818ccd3ed7}\index{Maze@{Maze}!cols@{cols}}
+\index{cols@{cols}!Maze@{Maze}}
+\doxysubsubsection{\texorpdfstring{cols()}{cols()}}
+{\footnotesize\ttfamily \label{class_maze_aa5623e0a308956de6489e0818ccd3ed7} 
+std\+::size\+\_\+t Maze\+::cols (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Renvoie le nombre de ligne du labyrinthe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+return nc, le nombre de ligne du labyrinthe \Hypertarget{class_maze_a8c1641f0761457416e343e3ea70c567b}\index{Maze@{Maze}!generate@{generate}}
+\index{generate@{generate}!Maze@{Maze}}
+\doxysubsubsection{\texorpdfstring{generate()}{generate()}}
+{\footnotesize\ttfamily \label{class_maze_a8c1641f0761457416e343e3ea70c567b} 
+void Maze\+::generate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+génère le labyrinthe 
+
+Dans un premier temps, génère un labyrinthe rempli. Chaque cellule est encerclée. Passe sur chaque cellule à travers une marche aléatoire et y retire un mur au hasard, sans toucher aux murs extérieurs au labyrinthe. Possibilité d\textquotesingle{}un labyrinthe sans chemin ? Puis repère les cellules correspondant à des impasses, y sélectionne un mur au hasard (gauche ou bas) et les stocke dans un vecteur. Retire 20\% des murs sélectionné. 100\% donnerait un labyrinthe sans impasse.
+
+Retire le mur du bas de la première et de la dernière cellule pour garantir une entrée et une sortie. \Hypertarget{class_maze_ad747a622d6196d16a63d376ad95cff34}\index{Maze@{Maze}!inBounds@{inBounds}}
+\index{inBounds@{inBounds}!Maze@{Maze}}
+\doxysubsubsection{\texorpdfstring{inBounds()}{inBounds()}}
+{\footnotesize\ttfamily \label{class_maze_ad747a622d6196d16a63d376ad95cff34} 
+bool Maze\+::in\+Bounds (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption}) const}
+
+
+
+Regarde si (r,c) est toujours dans les limites du labyrinthes. Renvois True si c\textquotesingle{}est le cas, False sinon. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & ligne r et la colonne c du point de coordonnée en question. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True(1) si c\textquotesingle{}est possible, False(0) sinon. 
+\end{DoxyReturn}
+\Hypertarget{class_maze_a6eb47c884e545475598f784707088f8b}\index{Maze@{Maze}!print@{print}}
+\index{print@{print}!Maze@{Maze}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily \label{class_maze_a6eb47c884e545475598f784707088f8b} 
+void Maze\+::print (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+affiche le labyrinthe dans le terminal 
+
+Parcours les céllules une à une. Pour chaque cellule affiche "{}\texorpdfstring{$\vert$}{|}"{} si il y a un mur à gauche de la cellule et un tiret du huit si le bas de la cellule est un mur. \Hypertarget{class_maze_ad2453334e1a8cf26e76907269ad7c07d}\index{Maze@{Maze}!rows@{rows}}
+\index{rows@{rows}!Maze@{Maze}}
+\doxysubsubsection{\texorpdfstring{rows()}{rows()}}
+{\footnotesize\ttfamily \label{class_maze_ad2453334e1a8cf26e76907269ad7c07d} 
+std\+::size\+\_\+t Maze\+::rows (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Renvoie le nombre de ligne du labyrinthe. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em } & \\
+\hline
+\end{DoxyParams}
+return nr, le nombre de ligne du labyrinthe 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{maze_8hpp}{maze.\+hpp}}\item 
+src/\mbox{\hyperlink{maze_8cpp}{maze.\+cpp}}\end{DoxyCompactItemize}

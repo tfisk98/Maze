@@ -27,9 +27,17 @@
 
 class Solver {
 public:
+    /**
+     * \fn Solver(const Maze& m)
+     * \brief Constructeur de la classe Solveur
+     *
+     * Apparie le solveur avec un labyrinthe
+     *
+     *\param une réference à un labyrinthe
+     *\return objet de la classe Solveur
+     */
     Solver(const Maze& m);
 
-    // A* shortest path
     /**
      * \fn std::vector<std::pair<int,int>>  solveAStar();
      * \brief Calcul du plus court chemin du labyrinthe avec l'algorithme AStar.
@@ -42,7 +50,6 @@ public:
      */
     std::vector<std::pair<int,int>> solveAStar();
 
-    // Tremaux algorithm (DFS with marking visited paths)
     /**
      * \fn std::vector<std::pair<int,int>>  solveAStar();
      * \brief Calcul du plus court chemin du labyrinthe avec l'algorithme Tremaux.
@@ -58,7 +65,7 @@ private:
     const Maze& maze;
     int nr, nc;
 
-    // Helper to check if move is valid (no wall)
+   
     /**
      * \fn bool canMove(int r1, int c1, int r2, int c2) ;
      * \brief Verifie qu'aller du point de coordonner(r1,c1) au point (r2,c2) est possible.
@@ -72,9 +79,8 @@ private:
      */
     bool canMove(int r1, int c1, int r2, int c2) const;
 
-    // Manhattan heuristic for A*
     /**
-     * \fn int manhattan(int r, int c);
+     *\fn int manhattan(int r, int c);
      * \brief Calcul du plus court chemin du labyrinthe avec l'algorithme AStar.
      *
      *  Calcule la distance d'un point (r,c) au point de sortie du labyrinthe.
@@ -87,7 +93,6 @@ private:
     #ifdef UNIT_TEST
 	public:
 
-    // Ici on rends la fonction heuristic public pour pouvoir la tester
 
 	int manhattanPublic(int r, int c) const {
         return manhattan(r, c);

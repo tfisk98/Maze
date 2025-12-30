@@ -1,0 +1,54 @@
+\doxysection{maze.\+hpp}
+\hypertarget{maze_8hpp_source}{}\label{maze_8hpp_source}\index{include/maze.hpp@{include/maze.hpp}}
+\mbox{\hyperlink{maze_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MAZE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MAZE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cell_8hpp}{cell.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <tuple>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_maze_aad03ade4541510e080625f55266f720c}{Maze}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_maze_aad03ade4541510e080625f55266f720c}{Maze}}(std::size\_t\ nr0\ =\ 0,\ std::size\_t\ nc0\ =\ 0);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{struct_cell}{Cell}}\&\ operator()(\textcolor{keyword}{const}\ std::size\_t\ \&j,\ \textcolor{keyword}{const}\ std::size\_t\ \&k);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_cell}{Cell}}\&\ operator()(\textcolor{keyword}{const}\ std::size\_t\ \&j,\ \textcolor{keyword}{const}\ std::size\_t\ \&k)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{class_maze_ad2453334e1a8cf26e76907269ad7c07d}{rows}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ nr;\ \}}
+\DoxyCodeLine{00070\ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ }
+\DoxyCodeLine{00079\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{class_maze_aa5623e0a308956de6489e0818ccd3ed7}{cols}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ nc;\ \}}
+\DoxyCodeLine{00080\ \ \ \ \ }
+\DoxyCodeLine{00081\ \ \ \ \ }
+\DoxyCodeLine{00082\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_maze_a8c1641f0761457416e343e3ea70c567b}{generate}}();}
+\DoxyCodeLine{00097\ \ \ \ \ }
+\DoxyCodeLine{00106\ \ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_maze_a6eb47c884e545475598f784707088f8b}{print}}();}
+\DoxyCodeLine{00108\ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_maze_ad747a622d6196d16a63d376ad95cff34}{inBounds}}(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_maze_1_1_wall}{Wall}}\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ r,\ c;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ type;\ \textcolor{comment}{//\ 'L'\ or\ 'B'}}
+\DoxyCodeLine{00125\ \ \ \ \ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ std::size\_t\ nr,\ nc;}
+\DoxyCodeLine{00128\ \ \ \ \ std::vector<Cell>\ data;}
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00133\ }
+
+\end{DoxyCode}
