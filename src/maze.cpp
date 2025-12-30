@@ -43,11 +43,11 @@ bool Maze::inBounds(int r, int c) const {
 // --- Generation (Recursive Backtracker) ---
 void Maze::generate() {
     // 1. Reset grid
-    for (auto &c : data) {
-        c.left = '|';
-        c.bot  = '_';
-        c.visited = false;
-    }
+    //for (auto &c : data) {
+    //    c.left = '|';
+    //    c.bot  = '_';
+    //    c.visited = false;
+    //}
 
     std::mt19937 gen(std::random_device{}());
     
