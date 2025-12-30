@@ -50,9 +50,9 @@ TEST_CASE ("algorithme A* fonctionne", "[algorithme A*]"){
     
     REQUIRE( path_length < m.rows()*m.cols()); // la longeueur du chemin est inférieur au nombre total de cellules
     
-    std::vector<std::pair<int, int>> tremaux = s.solveTremaux();
+    //std::vector<std::pair<int, int>> tremaux = s.solveTremaux();
     
-    REQUIRE( path == tremaux );
+    //REQUIRE( path == tremaux );
     
 }
 

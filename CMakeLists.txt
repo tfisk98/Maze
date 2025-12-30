@@ -61,3 +61,8 @@ target_link_libraries(tests PRIVATE
 
 include(Catch)
 catch_discover_tests(tests)
+
+add_custom_target(run_tests
+    COMMAND ctest --output-on-failure
+    DEPENDS tests
+)
