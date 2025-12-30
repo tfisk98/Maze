@@ -1,4 +1,4 @@
-/**
+/*!
  * \file solver.cpp
  * \brief Methodes de la classe Solver (solver.hpp)
  * \author Thomas Burns & Thomas Fisk
@@ -68,27 +68,31 @@ std::vector<std::pair<int,int>> Solver::solveAStar() {
                         std::greater<>> openSet;
 
     std::map<CellCoord, CellCoord> cameFrom;
-    std::map<CellCoord, int> gScore;
+    std::map<CellCoord, int> lengthPath;
     CellCoord start{0,0}, goal{nr-1, nc-1};
-    gScore[start] = 0;
+    lengthPath[start] = 0;
     openSet.push({manhattan(0,0), start});
+    
+    int r,c,nr1,nc1;
+    int potLength;
+    int pathScore;
 
     while (!openSet.empty()) {
         auto [f, current] = openSet.top(); openSet.pop();
         if (current == goal) break;
 
-        int r = current.first;
-        int c = current.second;
+        r = current.first;
+        c = current.second;
         CellCoord neighbors[4] = {{r-1,c},{r+1,c},{r,c-1},{r,c+1}};
         for (auto &nxt_cell : neighbors) {
-            int nr1 = nxt_cell.first;
-            int nc1 = nxt_cell.second;
+            nr1 = nxt_cell.first;
+            nc1 = nxt_cell.second;
             if (!canMove(r,c,nr1,nc1)) continue;
-            int tentative_g = gScore[current] + 1;
-            if (!gScore.count(nxt_cell) || tentative_g < gScore[nxt_cell]) {
-                gScore[nxt_cell] = tentative_g;
-                int fScore = tentative_g + manhattan(nr1,nc1);
-                openSet.push({fScore, nxt_cell});
+            potLength = lengthPath[current] + 1;
+            if (!lengthPath.count(nxt_cell) || potLength < lengthPath[nxt_cell]) {
+                lengthPath[nxt_cell] = potLength;
+                pathScore = potLength + manhattan(nr1,nc1);
+                openSet.push({pathScore, nxt_cell});
                 cameFrom[nxt_cell] = current;
             }
         }

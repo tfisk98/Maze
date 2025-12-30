@@ -31,13 +31,28 @@ TEST_CASE ("fonction canMove fonctionne ", "[canMove]") {
 }
 
 
-/*
+
 TEST_CASE ("algorithme A* fonctionne", "[algorithme A*]"){
 
 	Maze m(5,5);
 	Solver s(m);
 	std::vector<std::pair<int,int>> path = s.solveAStar();
+    
+    std::pair<int,int> start = path.front();
+    std::pair<int,int> goal = path.back();
 	
-	REQUIRE((path[0].first, path[0].second) = m.cols() && (path[4].first, path[4].second) = m.rows());
+    REQUIRE( start.first== 0 );
+    REQUIRE( start.second == 0); // On débute bien en haut à gauche du labyrinthe
+    REQUIRE( goal.first == m.rows()-1);
+    REQUIRE( goal.second == m.cols() - 1); // On finit bien en bas à droite du labyrinthe
+    
+    unsigned int path_length = path.size();
+    
+    REQUIRE( path_length < m.rows()*m.cols()); // la longeueur du chemin est inférieur au nombre total de cellules
+    
+    std::vector<std::pair<int, int>> tremaux = s.solveTremaux();
+    
+    REQUIRE( path == tremaux );
+    
 }
-*/
+
