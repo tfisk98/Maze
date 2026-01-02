@@ -1,0 +1,3 @@
+Commande pour build le projet et rendre les tests automatiques :
+cmake ..
+cmake --build . --target run_tests

@@ -1,0 +1,50 @@
+\doxysection{solver.\+hpp}
+\hypertarget{solver_8hpp_source}{}\label{solver_8hpp_source}\index{include/solver.hpp@{include/solver.hpp}}
+\mbox{\hyperlink{solver_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SOLVER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SOLVER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{maze_8hpp}{maze.hpp}}"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_solver_a67b9d3ca406214d7c962dd83d2061cb3}{Solver}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_solver_a67b9d3ca406214d7c962dd83d2061cb3}{Solver}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_maze}{Maze}}\&\ m);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<std::pair<int,int>>\ solveAStar();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00062\ \ \ \ \ std::vector<std::pair<int,int>>\ solveTremaux();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_maze}{Maze}}\&\ maze;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{int}\ nr,\ nc;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_solver_a0b0819376b3dea977a55761551154134}{canMove}}(\textcolor{keywordtype}{int}\ r1,\ \textcolor{keywordtype}{int}\ c1,\ \textcolor{keywordtype}{int}\ r2,\ \textcolor{keywordtype}{int}\ c2)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_solver_a7a092a99d4de7af131f2c966e698a522}{manhattan}}(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ UNIT\_TEST}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ manhattanPublic(\textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ c)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_solver_a7a092a99d4de7af131f2c966e698a522}{manhattan}}(r,\ c);}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{bool}\ canMovePublic(\textcolor{keywordtype}{int}\ r1,\ \textcolor{keywordtype}{int}\ c1,\ \textcolor{keywordtype}{int}\ r2,\ \textcolor{keywordtype}{int}\ c2)\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_solver_a0b0819376b3dea977a55761551154134}{canMove}}(r1,c1,r2,c2);}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00105\ \ \ \ \ }
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ }
+
+\end{DoxyCode}

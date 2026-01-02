@@ -1,0 +1,122 @@
+\doxysection{Solver Class Reference}
+\hypertarget{class_solver}{}\label{class_solver}\index{Solver@{Solver}}
+
+
+classe representant le solver, le résoluteur  
+
+
+
+
+{\ttfamily \#include $<$solver.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_solver_a67b9d3ca406214d7c962dd83d2061cb3}{Solver}} (const \mbox{\hyperlink{class_maze}{Maze}} \&m)
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe Solveur. \end{DoxyCompactList}\item 
+\Hypertarget{class_solver_ae49448a426442d768aa18b857a89e918}\label{class_solver_ae49448a426442d768aa18b857a89e918} 
+std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ {\bfseries solve\+AStar} ()
+\item 
+\Hypertarget{class_solver_a0f2bf5732678d901d2bfb6afc4c8bdbd}\label{class_solver_a0f2bf5732678d901d2bfb6afc4c8bdbd} 
+std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ {\bfseries solve\+Tremaux} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_solver_a0b0819376b3dea977a55761551154134}{can\+Move}} (int r1, int c1, int r2, int c2) const
+\begin{DoxyCompactList}\small\item\em Verifie qu\textquotesingle{}aller du point de coordonner(r1,c1) au point (r2,c2) est possible. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_solver_a7a092a99d4de7af131f2c966e698a522}{manhattan}} (int r, int c) const
+\begin{DoxyCompactList}\small\item\em Calcul du plus court chemin du labyrinthe avec l\textquotesingle{}algorithme AStar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_solver_a73c5e568c5ef9b84ed6aebec06e53379}\label{class_solver_a73c5e568c5ef9b84ed6aebec06e53379} 
+const \mbox{\hyperlink{class_maze}{Maze}} \& {\bfseries maze}
+\item 
+\Hypertarget{class_solver_a53ca14d9b62ab7400285433a0df9d73a}\label{class_solver_a53ca14d9b62ab7400285433a0df9d73a} 
+int {\bfseries nr}
+\item 
+\Hypertarget{class_solver_a94bfe4b69ff34673ce3633070d2a0504}\label{class_solver_a94bfe4b69ff34673ce3633070d2a0504} 
+int {\bfseries nc}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+classe representant le solver, le résoluteur 
+
+La classe gere la résolution du labrinthe a travers l\textquotesingle{}algorithme AStar et/ou l\textquotesingle{}algorithme Trémaux. 
+
+\label{doc-constructors}
+\Hypertarget{class_solver_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_solver_a67b9d3ca406214d7c962dd83d2061cb3}\index{Solver@{Solver}!Solver@{Solver}}
+\index{Solver@{Solver}!Solver@{Solver}}
+\doxysubsubsection{\texorpdfstring{Solver()}{Solver()}}
+{\footnotesize\ttfamily \label{class_solver_a67b9d3ca406214d7c962dd83d2061cb3} 
+Solver\+::\+Solver (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_maze}{Maze}} \&}]{m}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe Solveur. 
+
+Apparie le solveur avec un labyrinthe
+
+
+\begin{DoxyParams}{Parameters}
+{\em une} & réference à un labyrinthe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+objet de la classe Solveur 
+\end{DoxyReturn}
+
+
+\label{doc-func-members}
+\Hypertarget{class_solver_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_solver_a0b0819376b3dea977a55761551154134}\index{Solver@{Solver}!canMove@{canMove}}
+\index{canMove@{canMove}!Solver@{Solver}}
+\doxysubsubsection{\texorpdfstring{canMove()}{canMove()}}
+{\footnotesize\ttfamily \label{class_solver_a0b0819376b3dea977a55761551154134} 
+bool Solver\+::can\+Move (\begin{DoxyParamCaption}\item[{int}]{r1}{, }\item[{int}]{c1}{, }\item[{int}]{r2}{, }\item[{int}]{c2}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Verifie qu\textquotesingle{}aller du point de coordonner(r1,c1) au point (r2,c2) est possible. 
+
+Regarde si (r2,c2) est toujours dans les limites du labyrinthes. Si oui, vérifie qu\textquotesingle{}un mur ne se trouve pas entre (r1,c1) et (r2,c2). Renvois False si c\textquotesingle{}est le cas, True sinon
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & ligne r1 et la colonne c1 du point de coordonnée actuel et la ligne r2 et la colonne c2 du point vers lequel on veut aller. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True(1) si c\textquotesingle{}est possible, False(0) sinon. 
+\end{DoxyReturn}
+\Hypertarget{class_solver_a7a092a99d4de7af131f2c966e698a522}\index{Solver@{Solver}!manhattan@{manhattan}}
+\index{manhattan@{manhattan}!Solver@{Solver}}
+\doxysubsubsection{\texorpdfstring{manhattan()}{manhattan()}}
+{\footnotesize\ttfamily \label{class_solver_a7a092a99d4de7af131f2c966e698a522} 
+int Solver\+::manhattan (\begin{DoxyParamCaption}\item[{int}]{r}{, }\item[{int}]{c}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calcul du plus court chemin du labyrinthe avec l\textquotesingle{}algorithme AStar. 
+
+Calcule la distance d\textquotesingle{}un point (r,c) au point de sortie du labyrinthe.
+
+
+\begin{DoxyParams}{Parameters}
+{\em aucun} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vecteur de coordonnées des cellules parcourus par le plus court chemin chemin. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{solver_8hpp}{solver.\+hpp}}\item 
+src/\mbox{\hyperlink{solver_8cpp}{solver.\+cpp}}\end{DoxyCompactItemize}

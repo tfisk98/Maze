@@ -1,28 +1,68 @@
 cmake_minimum_required(VERSION 3.15)
 
-# Project Name
 project(MazeViewer VERSION 1.0 LANGUAGES CXX)
 
-# 1. Set C++ Standard (-std=c++17)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 2. Find SFML Package
-# We look for SFML 3. If you installed it manually or via Homebrew/apt, 
-# CMake should find the config files automatically.
-find_package(SFML 3 COMPONENTS Graphics Window System REQUIRED)
-
-# 3. Create the Executable (-o maze_sfml)
-# We include both source files here.
-add_executable(maze_sfml SFML.cpp maze.cpp)
-
-# 4. Link Libraries (-lsfml-graphics -lsfml-window -lsfml-system)
-# SFML::Graphics automatically handles the -I includes and -L library paths for you.
-target_link_libraries(maze_sfml PRIVATE SFML::Graphics SFML::Window SFML::System)
-cmake_minimum_required(VERSION 4.1.2)
-project(MazeSolver)
-
-set(CMAKE_CXX_STANDARD 17)
-
 include_directories(include)
-add_library(maze src/main.cpp)
+
+find_package(SFML 3 COMPONENTS Graphics Window System Audio REQUIRED)
+
+# --- Executable 1: maze_sfml ---
+add_executable(maze_sfml
+    src/SFML_orig.cpp	
+    src/maze.cpp	
+    src/solver.cpp
+)
+
+target_link_libraries(maze_sfml PRIVATE
+    SFML::Graphics
+    SFML::Window
+    SFML::System
+)
+
+# --- Executable 2: maze_game ---
+add_executable(maze_game
+        src/SFML_game.cpp	
+        src/maze.cpp	
+        src/solver.cpp
+)
+
+target_link_libraries(maze_game PRIVATE
+    SFML::Graphics
+    SFML::Window
+    SFML::System
+)
+
+# ================================
+#           TESTS
+# ================================
+include(CTest)
+
+# Tell CMake where Catch2 is installed
+set(CMAKE_PREFIX_PATH "/usr/local/opt/catch2" ${CMAKE_PREFIX_PATH})
+
+find_package(Catch2 3 REQUIRED)
+
+add_executable(tests
+    tests/test_solver.cpp
+    tests/test_maze.cpp
+    src/maze.cpp
+    src/solver.cpp
+)
+
+target_compile_definitions(tests PRIVATE UNIT_TEST)
+
+target_link_libraries(tests PRIVATE
+    Catch2::Catch2WithMain
+)
+
+
+include(Catch)
+catch_discover_tests(tests)
+
+add_custom_target(run_tests
+    COMMAND ctest --output-on-failure
+    DEPENDS tests
+)
