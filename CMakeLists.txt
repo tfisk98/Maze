@@ -57,3 +57,34 @@ add_custom_command(TARGET sfml_game POST_BUILD
     COMMENT "Copying arial.ttf next to sfml_game executable"
 )
 
+# ------------------------------------------------------------
+# 3) Tests Autos
+# ------------------------------------------------------------
+
+list(APPEND CMAKE_PREFIX_PATH "~/local/install_catch2")
+find_package(Catch2 3 REQUIRED)
+
+enable_testing()
+
+add_executable(tests
+    tests/test_maze.cpp
+    tests/test_solver.cpp
+    src/maze.cpp
+    src/solver.cpp
+)
+
+target_link_libraries(tests
+    PRIVATE
+        Catch2::Catch2WithMain
+)
+
+include(CTest)
+include(Catch)
+
+catch_discover_tests(tests)
+
+add_custom_target(run_tests
+    COMMAND ctest --output-on-failure
+    DEPENDS tests
+)
+

@@ -26,7 +26,9 @@
 */
 
 class Solver {
+    
 public:
+
     /**
      * \fn Solver(const Maze& m)
      * \brief Constructeur de la classe Solveur
@@ -61,6 +63,7 @@ public:
      */
     std::vector<std::pair<int,int>> solveTremaux();
 
+    
 private:
     const Maze& maze;
     int nr, nc;
@@ -90,9 +93,8 @@ private:
      */
     int manhattan(int r, int c) const;
 
-    #ifdef UNIT_TEST
-	public:
-
+public:    
+    int a = 6;
 
 	int manhattanPublic(int r, int c) const {
         return manhattan(r, c);
@@ -101,7 +103,6 @@ private:
     bool canMovePublic(int r1, int c1, int r2, int c2) const{
         return canMove(r1,c1,r2,c2);
     }
-    #endif
 	
 };
 
