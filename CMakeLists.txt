@@ -87,4 +87,3 @@ add_custom_target(run_tests
     COMMAND ctest --output-on-failure
     DEPENDS tests
 )
-

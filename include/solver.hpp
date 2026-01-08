@@ -94,7 +94,6 @@ private:
     int manhattan(int r, int c) const;
 
 public:    
-    int a = 6;
 
 	int manhattanPublic(int r, int c) const {
         return manhattan(r, c);
