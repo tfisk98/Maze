@@ -8,8 +8,11 @@ TEST_CASE ("fonction heuristique (manhattan) fonctionne ", "[manhattan]") {
 
 	Maze m(5,5);
 	Solver s(m);
+    
 
-	REQUIRE(s.manhattanPublic(1,1) == 6);
+	//REQUIRE(s.a == 6);
+    
+    REQUIRE(s.manhattanPublic(1,1) == 6);
 }
 
 
@@ -53,6 +56,22 @@ TEST_CASE ("algorithme A* fonctionne", "[algorithme A*]"){
     //std::vector<std::pair<int, int>> tremaux = s.solveTremaux();
     
     //REQUIRE( path == tremaux );
+    
+    Maze m2(25,25);
+    Solver s2(m2);
+    path = s2.solveAStar();
+    
+    //std::pair<int,int> start = path.front();
+    //std::pair<int,int> goal = path.back();
+    
+    //REQUIRE( start.first== 0 );
+    //REQUIRE( start.second == 0); // On débute bien en haut à gauche du labyrinthe
+    //REQUIRE( goal.first == m.rows()-1);
+    //REQUIRE( goal.second == m.cols() - 1); // On finit bien en bas à droite du labyrinthe
+    
+    path_length = path.size();
+    
+    REQUIRE( path_length < m.rows()*m.cols());
     
 }
 
