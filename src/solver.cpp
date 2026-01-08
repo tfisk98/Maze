@@ -38,18 +38,6 @@ bool Solver::canMove(int r1, int c1, int r2, int c2) const {
     return false; // diagonal not allowed
 }
 
-/*
-bool Solver::canMove(Maze& m,int r1, int c1, int r2, int c2) const {
-    if !m.inBounds(r2,c2) return false;
-    if (r2 == r1) { // horizontal move
-        if (c2 > c1) return maze(r1,c2).left != '|';   // right
-        else         return maze(r1,c1).left != '|';   // left
-    } else if (c2 == c1) { // vertical move
-        if (r2 > r1) return maze(r1,c1).bot != '_';   // down
-        else         return maze(r2,c1).bot != '_';   // up
-    }
-    return false; // diagonal not allowed
-}*/
 
 // ---------------------------
 // Manhattan heuristic

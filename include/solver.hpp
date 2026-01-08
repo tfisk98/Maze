@@ -90,7 +90,6 @@ private:
      */
     int manhattan(int r, int c) const;
 
-    #ifdef UNIT_TEST
 	public:
 
 
@@ -101,7 +100,6 @@ private:
     bool canMovePublic(int r1, int c1, int r2, int c2) const{
         return canMove(r1,c1,r2,c2);
     }
-    #endif
 	
 };
 
